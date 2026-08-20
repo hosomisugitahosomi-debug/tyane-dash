@@ -2,13 +2,34 @@
 
 公式FAQで解決した項目は削除済み。**残り2問。**
 
+### 英語（そのままコピペ）
+
+> Hello,
+>
+> Could you please clarify two things?
+>
+> **1.** How is the "scalp limit" shown on the client dashboard determined?
+> Please tell me the exact amount, or the formula used to calculate it.
+>
+> **2.** Could you provide the typical spread for **GBPJPYc, EURJPYc and BTCUSD**?
+> The "Tradable Instruments and commissions" article lists the symbols but not the spreads.
+> Also, regarding the commission table in that article: the heading says
+> "Futures & Derivatives trading commissions" — does the **$3 FX commission apply to spot FX as well**,
+> and is it **per side or per round turn, per standard lot**?
+>
+> Thank you.
+
+### 日本語（日本語サポート向け）
+
 > お世話になります。2点確認させてください。
 >
 > **1.** ダッシュボードに表示される「スキャルピング上限額（scalp limit）」は
 > どのように決まりますか？ 具体的な金額または算出方法を教えてください。
 >
-> **2.** GBPJPY / EURJPY / BTCUSD の平均スプレッドと取引手数料（往復・1ロットあたり）を
-> 教えてください。`.c` サフィックス付きの銘柄の数値でお願いします。
+> **2.** GBPJPYc / EURJPYc / BTCUSD の平均スプレッドを教えてください。
+> また「取引可能な金融商品および手数料」ページの手数料表は見出しが
+> 「先物・デリバティブ取引手数料」となっていますが、**FXの$3はスポットFXにも適用されますか？**
+> **片道か往復か、1ロットあたりか**もあわせて教えてください。
 
 | # | 何のために聞くか |
 |---|---|
