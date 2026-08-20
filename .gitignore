@@ -1,0 +1,12 @@
+# 大容量データはコミットしない（GB級になるため）
+data/
+*.csv
+*.tsv
+*.hst
+*.fxt
+*.tkc
+*.zip
+
+# 集計結果だけは残す
+!data/summary/
+!data/summary/*.csv
