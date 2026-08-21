@@ -204,3 +204,44 @@ def simulate(sig, b, a, grid, mode):
     if i_tp == i_sl == 10 ** 9:
         return float(pnl_path[-1])
     return float(x) if i_tp < i_sl else float(-x)
+
+
+def simulate_limit(sig, b, a, offset_pips, fill_window, tp_pips=None, sl_pips=None,
+                   max_hold=JUDGE_SEC):
+    """成行ではなく指値でエントリーした場合。
+
+    売り(sg=+1): スパイクの上に売り指値を置く → bid が指値まで戻ったら約定
+    買い(sg=-1): スパイクの下に買い指値を置く → ask が指値まで下がったら約定
+    offset_pips 分だけ有利な価格で入れるが、そこまで伸びなければ約定しない。
+
+    戻り: (pips, 約定したか)。約定しなければ (None, False)
+    """
+    s, sg, x = sig["sec"], sig["sg"], sig["x"]
+    if tp_pips is None:
+        tp_pips = x
+    if sl_pips is None:
+        sl_pips = x
+    end_scan = min(s + 1 + fill_window, len(b))
+    if sg > 0:                                   # 売り
+        target = b[s] + offset_pips * UNIT
+        hit = np.where(b[s + 1:end_scan] >= target)[0]
+    else:                                        # 買い
+        target = a[s] - offset_pips * UNIT
+        hit = np.where(a[s + 1:end_scan] <= target)[0]
+    if len(hit) == 0:
+        return None, False
+    f = s + 1 + int(hit[0])                      # 約定した秒
+    end = f + max_hold
+    if end >= len(b):
+        return None, False
+    if sg > 0:                                   # 売り: 決済は ask を買う
+        path = (target - a[f + 1:end + 1]) / UNIT
+    else:                                        # 買い: 決済は bid を売る
+        path = (b[f + 1:end + 1] - target) / UNIT
+    i_tp = np.where(path >= tp_pips)[0]
+    i_sl = np.where(path <= -sl_pips)[0]
+    t_tp = i_tp[0] if len(i_tp) else 10 ** 9
+    t_sl = i_sl[0] if len(i_sl) else 10 ** 9
+    if t_tp == t_sl == 10 ** 9:
+        return float(path[-1]), True
+    return (float(tp_pips) if t_tp < t_sl else float(-sl_pips)), True
