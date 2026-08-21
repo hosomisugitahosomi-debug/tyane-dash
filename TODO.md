@@ -21,8 +21,11 @@ git checkout claude/aiajan-usability-t2w38v
 そのフォルダでClaude Codeを起動して、これを投げるだけ：
 
 ```
-HANDOFF.md を読んで続きから始めて
+/prop-next
 ```
+
+⚠️ **pull する前に `git status` を確認してください。**
+ローカルに未コミットの `.claude/` があると pull が失敗します（その場合は退避してから pull）。
 
 **測るのは1つ：決済3分20秒時点の平均獲得値幅（pips）。**
 

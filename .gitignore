@@ -10,3 +10,6 @@ data/
 # 集計結果だけは残す
 !data/summary/
 !data/summary/*.csv
+
+# ローカル個人設定（gitに入れない）
+.claude/settings.local.json
